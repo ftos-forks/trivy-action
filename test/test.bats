@@ -9,7 +9,7 @@ setup_file() {
   # bats provides fd 3 for printing directly to the terminal
   # see https://bats-core.readthedocs.io/en/stable/writing-tests.html#printing-to-the-terminal
   docker pull knqyf263/vuln-image:1.2.3 1>&3 2>&3
-  trivy image --download-db-only 1>&3 2>&3
+  trivy image --no-progress --download-db-only 1>&3 2>&3
 }
 
 setup() {
