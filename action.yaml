@@ -77,7 +77,7 @@ inputs:
     required: false
     default: ''
   trivyignores:
-    description: 'comma-separated list of relative paths in repository to one or more .trivyignore files'
+    description: 'comma-separated list of relative paths within the repository to one or more .trivyignore files, or a single .trivyignore.yaml file.'
     required: false
     default: ''
   github-pat:
