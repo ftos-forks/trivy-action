@@ -211,7 +211,7 @@ run_test_case_fails() {
 }
 
 @test "error if ignorefile does not exist" {
-  missing_file="$BATS_TEST_TMPDIR/missing.ignore"
+  local missing_file="$BATS_TEST_TMPDIR/missing.ignore"
 
   export INPUT_TRIVYIGNORES="$missing_file" \
          INPUT_SCAN_TYPE=fs \
@@ -221,8 +221,8 @@ run_test_case_fails() {
 }
 
 @test "error with mixed yaml and plain ignore files" {
-  plain_ignore="$BATS_TEST_TMPDIR/ignore-plain"
-  yaml_ignore="$BATS_TEST_TMPDIR/ignore.yaml"
+  local plain_ignore="$BATS_TEST_TMPDIR/ignore-plain"
+  local yaml_ignore="$BATS_TEST_TMPDIR/ignore.yaml"
   
   touch "$plain_ignore" "$yaml_ignore"
 
@@ -234,8 +234,8 @@ run_test_case_fails() {
 }
 
 @test "error if multiple YAML files provided" {
-  yaml1="$BATS_TEST_TMPDIR/ignore1.yaml"
-  yaml2="$BATS_TEST_TMPDIR/ignore2.yaml"
+  local yaml1="$BATS_TEST_TMPDIR/ignore1.yaml"
+  local yaml2="$BATS_TEST_TMPDIR/ignore2.yaml"
   touch "$yaml1" "$yaml2"
 
   export INPUT_TRIVYIGNORES="$yaml1,$yaml2" \
@@ -246,7 +246,7 @@ run_test_case_fails() {
 }
 
 @test "works with a single YAML file" {
-  yaml="$BATS_TEST_TMPDIR/ignore.yaml"
+  local yaml="$BATS_TEST_TMPDIR/ignore.yaml"
   touch "$yaml"
 
   export INPUT_TRIVYIGNORES="$yaml" \
@@ -258,12 +258,10 @@ run_test_case_fails() {
 }
 
 @test "works with multiple plain ignore files" {
-  plain1="$BATS_TEST_TMPDIR/ignore1"
-  plain2="$BATS_TEST_TMPDIR/ignore2"
+  local plain1="$BATS_TEST_TMPDIR/ignore1"
+  local plain2="$BATS_TEST_TMPDIR/ignore2"
   echo "CVE-1" > "$plain1"
   echo "CVE-2" > "$plain2"
-
-  trivy_output="$BATS_TEST_TMPDIR/trivy-output.test"
 
   export INPUT_TRIVYIGNORES="$plain1,$plain2" \
          INPUT_SCAN_TYPE=fs \
